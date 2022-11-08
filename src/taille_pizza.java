@@ -1,6 +1,6 @@
 
-public enum taille_pizza {
+public enum Taille_pizza {
 	
-	PETITE,MYENNE, GRANDE
+	PETITE,MOYENNE, GRANDE
 
 }
