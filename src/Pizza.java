@@ -7,11 +7,11 @@ public class Pizza {
 	private int ID;
 	private String Nom;
 	private float Prix;
-	private taille_pizza taille;
+	private Taille_pizza taille;
 	
 	private PizzaDAO dao = new PizzaDAO();
 	
-	public Pizza(String nom, float prix, taille_pizza taille) {
+	public Pizza(String nom, float prix, Taille_pizza taille) {
 		Nom = nom;
 		Prix = prix;
 		this.taille = taille;
@@ -32,7 +32,7 @@ public class Pizza {
 				this.ID = rs.getInt("ID"); 
 				this.Nom = rs.getString("Nom");
 				this.Prix = rs.getFloat("Prix");
-				this.taille = taille_pizza.valueOf(rs.getString("Taille"));
+				this.taille = Taille_pizza.valueOf(rs.getString("Taille"));
 				
 			}
 			if (this.ID == 0)
@@ -79,12 +79,12 @@ public class Pizza {
 	}
 
 
-	public taille_pizza getTaille() {
+	public Taille_pizza getTaille() {
 		return taille;
 	}
 
 
-	public void setTaille(taille_pizza taille) {
+	public void setTaille(Taille_pizza taille) {
 		this.taille = taille;
 	}
 	
