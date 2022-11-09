@@ -8,6 +8,8 @@ import java.util.Scanner;
 public class Main {
 	
 	private static PizzaDAO dao = new PizzaDAO();
+	
+	private static IIngredient service = new IngredientsService();
 
 	public static void main(String[] args) throws Exception {
 
@@ -16,6 +18,8 @@ public class Main {
 		System.out.println("1 | Ajouter une nouvelle pizza" );
 		System.out.println("2 | Afficher toutes les pizza" );
 		System.out.println("3 | Supprimer Pizza" );
+		System.out.println("4 | Afficher un ingredient" );
+		
 		int choix = sc.nextInt();
 		
 		switch(choix) {
@@ -26,6 +30,13 @@ public class Main {
 		case 2 :
 			AfficherPizza(sc);
 		break;
+		case 4 :
+			System.out.println("numero de l'ingredients");
+			int id = sc.nextInt();
+			
+			System.out.println(service.get(id));
+			break;
+			
 		default :
 			throw new Exception("Choix incorrect");
 			// on declenche une exeption
