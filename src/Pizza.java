@@ -1,6 +1,7 @@
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 public class Pizza {
 	
@@ -9,16 +10,21 @@ public class Pizza {
 	private float Prix;
 	private Taille_pizza taille;
 	
+	private List <Ingredient> list_ingredient;
+	
+	private PizzaService service;
+	
 	private PizzaDAO dao = new PizzaDAO();
 	
 	public Pizza(String nom, float prix, Taille_pizza taille) {
 		Nom = nom;
 		Prix = prix;
 		this.taille = taille;
+		this.service = new PizzaService();
 	}
 
 	public Pizza (int ID) {
-		
+		this.service = new PizzaService();
 		Statement sts = dao.getStatement();
 		
 		String SQL = "SELECT * FROM Pizzas WHERE ID = " + ID;
@@ -87,8 +93,12 @@ public class Pizza {
 	public void setTaille(Taille_pizza taille) {
 		this.taille = taille;
 	}
-	
-	
+
+	public List<Ingredient> getList_ingredient() {
+		this.list_ingredient = service.getIngredient(this.ID);
+		return list_ingredient;
+	}
+
 	
 	
 	

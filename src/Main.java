@@ -19,7 +19,7 @@ public class Main {
 		System.out.println("2 | Afficher toutes les pizza" );
 		System.out.println("3 | Supprimer Pizza" );
 		System.out.println("4 | Afficher un ingredient" );
-		
+		System.out.println("5 | Afficher un ingredients d'une Pizza" );
 		int choix = sc.nextInt();
 		
 		switch(choix) {
@@ -35,7 +35,15 @@ public class Main {
 			int id = sc.nextInt();
 			
 			System.out.println(service.get(id));
-			break;
+		break;
+		
+		case 5 :
+			System.out.println("veuillez entrer l'ID");
+			int ID = sc.nextInt();
+			Pizza p = new Pizza(ID);
+			System.out.println(p.getList_ingredient());
+		break;
+		
 			
 		default :
 			throw new Exception("Choix incorrect");
