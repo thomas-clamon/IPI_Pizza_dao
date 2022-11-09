@@ -84,7 +84,7 @@ public class Main {
 		float prix = sc.nextFloat();
 
 		System.out.println("veuiller saisir le nom de la pizza");
-		String nom = sc.nextLine();
+		String nom = sc.next();
 
 		
 		// on enrigistre la pizza dans la memoire java
@@ -93,6 +93,8 @@ public class Main {
 		// on demande au DAO d'enrigistrer la pizza en base
 		
 		dao.enregistrerPizza(p);
+		
+		System.out.println("la pizza a été enregistré");
 		
 	}
 

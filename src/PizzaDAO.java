@@ -6,8 +6,8 @@ import java.sql.Statement;
 
 public class PizzaDAO {
 	
-	private String url = "jdbc:sqlserver://localhost:1433;databaseName=PizzaDB";
-	private String user = "sa";
+	private String url = "jdbc:sqlserver://thomasclamon.database.windows.net:1433;databaseName=PizzaDB";
+	private String user = "toto";
 	private String pwd = "Soleil123";
 	
 	private Statement statement;

@@ -42,8 +42,21 @@ public class PizzaService implements IPizzaService {
 
 	@Override
 	public int ajouterIngredientPizza(int id_ingredient, int id_pizza) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		String SQL = String.format("INSERT INTO [dbo].[Contenir]\r\n"
+				+ "           ([ID_Pizza]\r\n"
+				+ "           ,[ID_Ingredient])\r\n"
+				+ "     VALUES (%d,%d)", id_pizza, id_ingredient);
+		
+		try {
+			dao.getStatement().executeUpdate(SQL);
+			return 1;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return -1;
+		}
+		
 	}
 
 
