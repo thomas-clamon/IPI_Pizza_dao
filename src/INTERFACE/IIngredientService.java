@@ -1,6 +1,7 @@
+package INTERFACE;
+import MODEL.Ingredient;
 
-
-public interface IIngredient {
+public interface IIngredientService {
 
 	public boolean AjouterIngrediant(Ingredient i);
 	

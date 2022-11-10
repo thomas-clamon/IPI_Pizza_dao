@@ -1,7 +1,10 @@
+package MODEL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
+
+import IMPLEMENTATION.PizzaService;
 
 public class Pizza {
 	
@@ -14,8 +17,6 @@ public class Pizza {
 	
 	private PizzaService service;
 	
-	private PizzaDAO dao = new PizzaDAO();
-	
 	public Pizza(String nom, float prix, Taille_pizza taille) {
 		Nom = nom;
 		Prix = prix;
@@ -23,32 +24,7 @@ public class Pizza {
 		this.service = new PizzaService();
 	}
 
-	public Pizza (int ID) {
-		this.service = new PizzaService();
-		Statement sts = dao.getStatement();
-		
-		String SQL = "SELECT * FROM Pizzas WHERE ID = " + ID;
-		
-		try {
-			ResultSet rs = sts.executeQuery(SQL);
-			
-			
-			while(rs.next())
-			{
-				this.ID = rs.getInt("ID"); 
-				this.Nom = rs.getString("Nom");
-				this.Prix = rs.getFloat("Prix");
-				this.taille = Taille_pizza.valueOf(rs.getString("Taille"));
-				
-			}
-			if (this.ID == 0)
-				return;
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
+	
 	@Override
 	public String toString() {
 		return "Pizza [ID=" + ID + ", Nom=" + Nom + ", Prix=" + Prix + ", taille=" + taille + "]";

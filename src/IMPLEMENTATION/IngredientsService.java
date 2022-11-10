@@ -1,7 +1,13 @@
+package IMPLEMENTATION;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class IngredientsService implements IIngredient {
+import DAO.PizzaDAO;
+import INTERFACE.IIngredientService;
+import MODEL.Ingredient;
+import MODEL.unite_ingredient;
+
+public class IngredientsService implements IIngredientService {
 	
 	private PizzaDAO dao = new PizzaDAO();
 

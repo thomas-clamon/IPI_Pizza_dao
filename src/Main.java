@@ -5,45 +5,66 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
+import DAO.PizzaDAO;
+import IMPLEMENTATION.ClientService;
+import IMPLEMENTATION.IngredientsService;
+import IMPLEMENTATION.PizzaService;
+import INTERFACE.IClientService;
+import INTERFACE.IIngredientService;
+import INTERFACE.IPizzaService;
+import MODEL.Client;
+import MODEL.Pizza;
+import MODEL.Taille_pizza;
+
 public class Main {
 	
-	private static PizzaDAO dao = new PizzaDAO();
+
+	private static IIngredientService service = new IngredientsService();
 	
-	private static IIngredient service = new IngredientsService();
+	private static IClientService clientService = new ClientService();
+	
+	private static IPizzaService pizzaService = new PizzaService();
 
 	public static void main(String[] args) throws Exception {
 
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Que voulez vous faire :");
 		System.out.println("1 | Ajouter une nouvelle pizza" );
-		System.out.println("2 | Afficher toutes les pizza" );
-		System.out.println("3 | Supprimer Pizza" );
-		System.out.println("4 | Afficher un ingredient" );
-		System.out.println("5 | Afficher un ingredients d'une Pizza" );
+		System.out.println("2 | Supprimer Pizza" );
+		System.out.println("3 | Afficher un ingredient" );
+		System.out.println("4 | Afficher les ingredients d'une Pizza" );
+		System.out.println("5| Afficher un Client ");
 		int choix = sc.nextInt();
 		
 		switch(choix) {
 		
 		case 1 :
 			AjouterPizza(sc);
-		break;
 		case 2 :
-			AfficherPizza(sc);
-		break;
-		case 4 :
-			System.out.println("numero de l'ingredients");
+			System.out.println("numero de la pizza");
 			int id = sc.nextInt();
-			
+			pizzaService.delete(id);
+			break;
+		case 3 :
+			System.out.println("numero de l'ingredients");
+			id = sc.nextInt();
 			System.out.println(service.get(id));
-		break;
 		
-		case 5 :
+		case 4 :
 			System.out.println("veuillez entrer l'ID");
 			int ID = sc.nextInt();
-			Pizza p = new Pizza(ID);
+			Pizza p = pizzaService.get(ID);
 			System.out.println(p.getList_ingredient());
-		break;
-		
+			break;
+			
+		case 5 :
+	
+			System.out.println("veuillez saisir l'id");
+			String mail = sc.next();
+			Client c = clientService.recuperer(mail); 
+			System.out.println(c);
+			break;
+			
 			
 		default :
 			throw new Exception("Choix incorrect");
@@ -92,17 +113,9 @@ public class Main {
 		
 		// on demande au DAO d'enrigistrer la pizza en base
 		
-		dao.enregistrerPizza(p);
+		pizzaService.enregistrerPizza(p);
 		
 		System.out.println("la pizza a été enregistré");
-		
-	}
-
-	public static void AfficherPizza(Scanner sc) throws Exception
-	{
-		dao.afficherPizza();
-	}
-	public static void SupprimerPizza(Scanner sc) throws Exception{
 		
 	}
 }
